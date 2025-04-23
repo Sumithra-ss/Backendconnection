@@ -133,10 +133,14 @@ const tutorsController = {
                                           
                                             {
                                               availability:{$regex:req.params.key}
+                                            },
+                                            {
+                                              Rating:{$regex:req.params.key}
                                             }
+                                           
                                           ]
                                         }).populate({path:"tutorid"});
-                                         res.status(200).json({tutor})
+                                         res.status(200).json([tutor])
                                         } catch(error){
                                           res.status(500).json({message:error.message})
                                         }

@@ -29,7 +29,7 @@ createAt:{
         type:String
     },
     Rating:{
-        type:Number
+        type:String
     },
     Feedback:
             {
