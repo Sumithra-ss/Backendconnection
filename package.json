@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": " Learning Management System (LMS) designed to connect students with tutors for online lessons",
   "main": "server.js",
-  
   "engines": {
     "node": "18.x"
   },
@@ -25,8 +24,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mocha": "^11.1.0",
-    "mongoose": "^8.3.4",
-    "node-fetch": "^3.3.2"
+    "mongoose": "^8.3.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
