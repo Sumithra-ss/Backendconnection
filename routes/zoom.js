@@ -1,10 +1,11 @@
-import fetch from "node-fetch";
-import base64 from "base-64";
+
+
 
 const zoomAccountId = "";
 const zoomClientId = "";
 const zoomClientSecret = "";
-
+const base64=require("base-64")
+const fetch=require("node-fetch")
 const getAuthHeaders = () => {
     return {
         Authorization: `Basic ${base64.encode(

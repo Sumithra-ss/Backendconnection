@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": " Learning Management System (LMS) designed to connect students with tutors for online lessons",
   "main": "server.js",
+  
   "engines": {
     "node": "18.x"
   },
