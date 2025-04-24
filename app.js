@@ -12,6 +12,7 @@ app.get('/posts',postRouter)
 const cors=require('cors');
 const { getusers,getuserbtid,updatePost,getuserdetbyid} = require('./Controller/getAllusers');
 const { getPosts } = require('./Controller/postController');
+const { login } = require('./Controller/authController');
 const { createtutor,getTutors,getTutorbyid ,updateTutorbyid } = require('./Controller/tutorsController')
 const {createtutorApp,getAppoinment, updateApp} = require('./Controller/AppoinmentController')
 const {createtutorAppdet,getAppoinmentdet, updateAppdet,updateAppdetails,getAppoinmentBYdet} = require('./Controller/AppoinmentdetailsController')
@@ -27,6 +28,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(logger);
 app.use('/api/v1/auth',authRouter)
+app.use('/login',login)
 app.use('/posts',postRouter)
 app.use('/createtutor',createtutor)
 app.use('/gettutor',getTutors)

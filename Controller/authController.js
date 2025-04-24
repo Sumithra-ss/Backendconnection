@@ -66,7 +66,7 @@ const authController = {
             res.cookie('token', token, { httpOnly: true, sameSite: 'strict', maxAge: 3 * 60 * 60 * 1000, secure: true, path: '/' });
 
             // return a success message
-            res.status(200).json({ message: 'User logged in!' });
+            res.status(200).json({ user,message:"loggedin success" });
         } catch (err) {
             res.status(500).json({ message: err.message });
         }
