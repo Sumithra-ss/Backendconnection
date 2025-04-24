@@ -146,6 +146,30 @@ const tutorsController = {
                                         }
                                       },
 
+                                      getTutorsdetailsbyfeedbackbyid:async(req,res)=>{
+                                        try{
+                                       
+                                         const tutor=await tutordetails.find({
+                                          "$or":[
+                                            {
+                                              subject:{$regex:req.params.key}
+                                            },
+                                          
+                                            {
+                                              availability:{$regex:req.params.key}
+                                            },
+                                            {
+                                              Rating:{$regex:req.params.key}
+                                            }
+                                           
+                                          ]
+                                        }).populate({path:"tutorid"});
+                                         res.status(200).json({tutor})
+                                        } catch(error){
+                                          res.status(500).json({message:error.message})
+                                        }
+                                      },
+
                   }
           
 module.exports = tutorsController;
