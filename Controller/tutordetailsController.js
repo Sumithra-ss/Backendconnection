@@ -140,7 +140,7 @@ const tutorsController = {
                                            
                                           ]
                                         }).populate({path:"tutorid"});
-                                         res.status(200).json([tutor])
+                                         res.status(200).json({tutor})
                                         } catch(error){
                                           res.status(500).json({message:error.message})
                                         }

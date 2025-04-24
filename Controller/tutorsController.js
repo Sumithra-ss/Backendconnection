@@ -56,7 +56,7 @@ const tutorsController = {
                     const {id}=req.params
                       const {Name,subject,email,Experience,Expertise,Qualifications,password}=req.body
                        await tutors.findByIdAndUpdate(id,{Name,subject,email,Experience,Expertise,Qualifications,password})
-                    res.status(200).json([])
+                    res.status(200).json({message:'updated successfully!'})
           
                   } catch(error){
           
