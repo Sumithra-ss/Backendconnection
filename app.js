@@ -22,7 +22,7 @@ const {getPaymentdet,createpaymentdet} =require('./Controller/PaymentdetControll
 const {createuploadetails,getuploaddetails} = require('./Controller/uploadetails')
 app.use(express.json())
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://frontend-9ob7.onrender.com',
     credentials:true
 }))
 app.use(cookieParser())
