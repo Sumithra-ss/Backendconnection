@@ -18,12 +18,12 @@ const {createtutorApp,getAppoinment, updateApp} = require('./Controller/Appoinme
 const {createtutorAppdet,getAppoinmentdet, updateAppdet,updateAppdetails,getAppoinmentBYdet} = require('./Controller/AppoinmentdetailsController')
 const {getTutorsdetails,createtutorsetails, getTutordetbyid,updateTutordetbyid,getTutorsdetailsbyfeedback,getFeedReviewbyid,updateTutordetailsbyid,deletetoturdet,getTutorsdetailsbyDashboard,gettutoridbyname} = require('./Controller/tutordetailsController')
 const {getPaymentdet,createpaymentdet} =require('./Controller/PaymentdetController')
-
+const {createstudentdetails} =require('./Controller/studentsController')
 
 const {createuploadetails,getuploaddetails} = require('./Controller/uploadetails')
 app.use(express.json())
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://backendconnection-14tc.onrender.com',
     credentials:true
 }))
 app.use(cookieParser())
@@ -63,7 +63,7 @@ app.use('/updateTutordetailsbyid/:id',updateTutordetailsbyid)
 app.use('/deletetoturdet/:id',deletetoturdet)
 app.use('/getTutorsdetailsbyDashboard/:key',getTutorsdetailsbyDashboard)
 app.use('/gettutoridbyname/:sub',gettutoridbyname)
-
+app.use('/createstudentdetails',createstudentdetails)
 
 
 
