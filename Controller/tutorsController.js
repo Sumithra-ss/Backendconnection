@@ -17,6 +17,10 @@ const tutorsController = {
     createtutor:async(req,res)=>{
             try{
               const {subject,availability,Name,price,email,Experience,Expertise,Qualifications,password,Rating,Feedback,studentName}=req.body
+             
+              if (!req.body){
+               return res.status(404).json({message:'All fields are required'})
+              }
               const newTutor=new tutor({
                 subject,
                 availability,
@@ -30,6 +34,7 @@ const tutorsController = {
                 Rating,
                 Feedback,
                 studentName
+                
                 
     
               })

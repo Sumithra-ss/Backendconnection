@@ -22,9 +22,11 @@ const uploadetails = {
                 },
     createuploadetails:async(req,res)=>{
             try{
-              const {tutorname,subject,url }=req.body
+              const {tutordetid,tutorid,tutorname,subject,url }=req.body
               
               const newTutor=new tutor({
+                tutordetid,
+                tutorid,
                 tutorname,
                 subject,
                 url

@@ -49,6 +49,9 @@ const postSchema=new mongoose.Schema({
     Rating:{
         type:Number
     },
+    price:{
+        type:String
+    },
     Feedback:
             {
             type:String,

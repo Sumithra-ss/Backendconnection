@@ -8,6 +8,12 @@ const userSchema=new mongoose.Schema({
     subject:{
         type:String
     },
+    tutorid:{
+        type:String
+    },
+    tutordetid:{
+        type:String
+    },
     url:{
         type:String,
         required:true,

@@ -16,13 +16,14 @@ const { login } = require('./Controller/authController');
 const { createtutor,getTutors,getTutorbyid ,updateTutorbyid } = require('./Controller/tutorsController')
 const {createtutorApp,getAppoinment, updateApp} = require('./Controller/AppoinmentController')
 const {createtutorAppdet,getAppoinmentdet, updateAppdet,updateAppdetails,getAppoinmentBYdet} = require('./Controller/AppoinmentdetailsController')
-const {getTutorsdetails,createtutorsetails, getTutordetbyid,updateTutordetbyid,getTutorsdetailsbyfeedback,getFeedReviewbyid,updateTutordetailsbyid,deletetoturdet,getTutorsdetailsbyDashboard} = require('./Controller/tutordetailsController')
+const {getTutorsdetails,createtutorsetails, getTutordetbyid,updateTutordetbyid,getTutorsdetailsbyfeedback,getFeedReviewbyid,updateTutordetailsbyid,deletetoturdet,getTutorsdetailsbyDashboard,gettutoridbyname} = require('./Controller/tutordetailsController')
 const {getPaymentdet,createpaymentdet} =require('./Controller/PaymentdetController')
+
 
 const {createuploadetails,getuploaddetails} = require('./Controller/uploadetails')
 app.use(express.json())
 app.use(cors({
-    origin:'https://frontend-9ob7.onrender.com',
+    origin:'http://localhost:5173',
     credentials:true
 }))
 app.use(cookieParser())
@@ -31,7 +32,7 @@ app.use('/api/v1/auth',authRouter)
 app.use('/login',login)
 app.use('/posts',postRouter)
 app.use('/createtutor',createtutor)
-app.use('/gettutor',getTutors)
+app.use('/getTutors',getTutors)
 app.use('/getPosts',getPosts)
 app.use('/getusers',getusers)
 app.use('/getuserbtid/:email',getuserbtid)
@@ -61,6 +62,8 @@ app.use('/getuserdetbyid/:id',getuserdetbyid)
 app.use('/updateTutordetailsbyid/:id',updateTutordetailsbyid)
 app.use('/deletetoturdet/:id',deletetoturdet)
 app.use('/getTutorsdetailsbyDashboard/:key',getTutorsdetailsbyDashboard)
+app.use('/gettutoridbyname/:sub',gettutoridbyname)
+
 
 
 

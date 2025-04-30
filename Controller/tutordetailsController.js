@@ -33,6 +33,7 @@ const tutorsController = {
                  Rating,
                  studentName,
                  tutorid
+                 
     
               })
               const savepost=await newTutor.save()
@@ -48,6 +49,18 @@ const tutorsController = {
               res.status(500).json({message:error.message})
             }
           },
+           gettutoridbyname:async(req,res)=>{
+                  try{
+                    const {subject}=req.params;
+                    const details=await tutordetails.findOne({subject}).select('---v')
+                    res.status(200).json({ details })
+          
+                  } catch(error){
+          
+          
+                    res.status(500).json({message:error.message})
+                  }
+                },
            getTutordetbyid:async(req,res)=>{
                    try{
                      const {id}=req.params;
@@ -136,6 +149,9 @@ const tutorsController = {
                                             },
                                             {
                                               Rating:{$regex:req.params.key}
+                                            },
+                                            {
+                                              price:{$regex:req.params.key}
                                             }
                                            
                                           ]
