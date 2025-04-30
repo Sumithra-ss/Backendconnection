@@ -23,7 +23,7 @@ const {createstudentdetails} =require('./Controller/studentsController')
 const {createuploadetails,getuploaddetails} = require('./Controller/uploadetails')
 app.use(express.json())
 app.use(cors({
-    origin:'https://backendconnection-14tc.onrender.com',
+    origin:'http://localhost:5173',
     credentials:true
 }))
 app.use(cookieParser())
