@@ -24,6 +24,7 @@ const {createuploadetails,getuploaddetails} = require('./Controller/uploadetails
 app.use(express.json())
 app.use(cors({
     origin:'https://frontend-9ob7.onrender.com',
+   //origin:' http://localhost:5173',
     credentials:true
 }))
 app.use(cookieParser())

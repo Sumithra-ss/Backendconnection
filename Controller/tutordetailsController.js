@@ -138,25 +138,43 @@ const tutorsController = {
                                       getTutorsdetailsbyDashboard:async(req,res)=>{
                                         try{
                                        
-                                         const tutor=await tutordetails.find({
-                                          "$or":[
-                                            {
-                                              subject:{$regex:req.params.key}
-                                            },
+                                          const tutor = await tutordetails.find({
+                                            "$or": [
+                                              { subject: { $regex: req.params.key, $options: 'i' } },
+                                              { availability: { $regex: req.params.key, $options: 'i' } },
+                                              {
+                                                $expr: {
+                                                  $regexMatch: {
+                                                    input: { $toString: "$Rating" },
+                                                    regex: req.params.key,
+                                                    options: 'i'
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                $expr: {
+                                                  $regexMatch: {
+                                                    input: { $toString: "$price" },
+                                                    regex: req.params.key,
+                                                    options: 'i'
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }).populate({
+                                            path:'tutorid'
+                                            
+                                          });
                                           
-                                            {
-                                              availability:{$regex:req.params.key}
-                                            },
-                                            {
-                                              Rating:{$regex:req.params.key}
-                                            },
-                                            {
-                                              price:{$regex:req.params.key}
-                                            }
-                                           
-                                          ]
-                                        }).populate({path:"tutorid"});
-                                         res.status(200).json(tutor)
+                                          
+                                        if (!tutor) {
+                                          return res.status(500).json({ message: 'User not found' });
+                                      }
+                                      else
+                                      {
+                                        res.status(200).json(tutor)
+                                      }
+                                        
                                         } catch(error){
                                           res.status(500).json({message:error.message})
                                         }
@@ -179,12 +197,40 @@ const tutorsController = {
                                             }
                                            
                                           ]
-                                        }).populate({path:"tutorid"});
+                                        }).populate({path:'tutorid',
+                                          match: {  price:{$regex:req.params.key} ,
+                                        }
+                                        }
+                                        );
+                                        if (!tutor) {
+                                          return res.status(500).json({ message: 'User not found' });
+                                      }
                                          res.status(200).json({tutor})
                                         } catch(error){
                                           res.status(500).json({message:error.message})
                                         }
                                       },
+                                      // getTutorsdetailsbyfeedbackbySearch:async(req,res)=>{
+                                      //   try{
+                                       
+                                      //    const tutor=await tutordetails.find( "$or":[
+                                      //     {
+                                      //       subject:{$regex:req.params.key}
+                                      //     },
+                                        
+                                      //     {
+                                      //       availability:{$regex:req.params.key}
+                                      //     },
+                                      //     {
+                                      //       Rating:{$regex:req.params.key}
+                                      //     }
+                                         
+                                      //   ]).populate({path:"tutorid"});
+                                      //    res.status(200).json({tutor})
+                                      //   } catch(error){
+                                      //     res.status(500).json({message:error.message})
+                                      //   }
+                                      // },
 
                   }
           
