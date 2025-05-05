@@ -138,33 +138,43 @@ const tutorsController = {
                                       getTutorsdetailsbyDashboard:async(req,res)=>{
                                         try{
                                        
-                                          const tutor = await tutordetails.find({
-                                            "$or": [
-                                              { subject: { $regex: req.params.key, $options: 'i' } },
-                                              { availability: { $regex: req.params.key, $options: 'i' } },
-                                              {
-                                                $expr: {
-                                                  $regexMatch: {
-                                                    input: { $toString: "$Rating" },
-                                                    regex: req.params.key,
-                                                    options: 'i'
-                                                  }
-                                                }
-                                              },
-                                              {
-                                                $expr: {
-                                                  $regexMatch: {
-                                                    input: { $toString: "$price" },
-                                                    regex: req.params.key,
-                                                    options: 'i'
-                                                  }
-                                                }
+                                          const tutor = await tutordetails.aggregate([
+                                            {
+                                              $lookup: {
+                                                from: 'tutors',
+                                                localField: 'tutorid',
+                                                foreignField: '_id',
+                                                as: 'tutor'
                                               }
-                                            ]
-                                          }).populate({
-                                            path:'tutorid'
-                                            
-                                          });
+                                            },
+                                          { $unwind: '$tutor' },
+                                            {
+                                              $match: {
+                                                $or: [
+                                                  { subject: { $regex: req.params.key, $options: 'i' } },
+                                                  { availability: { $regex: req.params.key, $options: 'i' } },
+                                                  {
+                                                    $expr: {
+                                                      $regexMatch: {
+                                                        input: { $toString: "$Rating" },
+                                                        regex: req.params.key,
+                                                        options: 'i'
+                                                      }
+                                                    }
+                                                  },
+                                          {
+                                                    $expr: {
+                                                      $regexMatch: {
+                                                        input: { $toString: "$tutor.price" },
+                                                        regex: req.params.key,
+                                                        options: 'i'
+                                                      }
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]);
                                           
                                           
                                         if (!tutor) {
